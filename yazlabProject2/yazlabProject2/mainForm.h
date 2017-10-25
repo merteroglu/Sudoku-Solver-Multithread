@@ -1,5 +1,7 @@
 #pragma once
 
+#include "Solver.h"
+
 namespace yazlabProject2 {
 
 	using namespace System;
@@ -9,7 +11,7 @@ namespace yazlabProject2 {
 	using namespace System::Data;
 	using namespace System::Drawing;
 
-    int matris[9][9];
+    int sudoku[9][9];
 
 	/// <summary>
 	/// Summary for mainForm
@@ -140,6 +142,7 @@ namespace yazlabProject2 {
 			this->btnCoz->TabIndex = 2;
 			this->btnCoz->Text = L"Çöz";
 			this->btnCoz->UseVisualStyleBackColor = true;
+			this->btnCoz->Click += gcnew System::EventHandler(this, &mainForm::btnCoz_Click);
 			// 
 			// btnOpen
 			// 
@@ -393,8 +396,10 @@ namespace yazlabProject2 {
 		}
 #pragma endregion
 	private: System::Void btnOpen_Click(System::Object^  sender, System::EventArgs^  e) {
-	//	openFileDialog1->Filter = 		 
+			 
 		try {
+			openFileDialog1->Filter = "Text files |*.txt";
+			openFileDialog1->Title = "Select sudoku text file";
 
 			if (openFileDialog1->ShowDialog() == System::Windows::Forms::DialogResult::OK) {
 				System::IO::StreamReader ^sr = gcnew System::IO::StreamReader(openFileDialog1->FileName);
@@ -408,23 +413,12 @@ namespace yazlabProject2 {
 					array<Char>^ dizi = gcnew array<Char>(9);
 					dizi = str->ToCharArray();
 					for (int j = 0; j < 9; j++) {
-
-						matris[i][j] = Convert::ToInt32(dizi->GetValue(j)->ToString());
+						sudoku[i][j] = Convert::ToInt32(dizi->GetValue(j)->ToString());
 					}
 
 				}
 
-
-
-				for (int i = 0; i < 9; i++) {
-					for (int j = 0; j < 9; j++) {
-						labelTest->Text = labelTest->Text + " " + matris[i][j];
-					}
-					labelTest->Text = labelTest->Text + "\n";
-				}
-
-
-
+				printMatris();
 
 				sr->Close();
 			}
@@ -435,6 +429,21 @@ namespace yazlabProject2 {
 		}
 
 	}
+
+private: System::Void btnCoz_Click(System::Object^  sender, System::EventArgs^  e) {
+	solve(sudoku);
+	printMatris();
+}
+
+private: System::Void printMatris() {
+	labelTest->Text = "";
+	for (int i = 0; i < 9; i++) {
+		for (int j = 0; j < 9; j++) {
+			labelTest->Text = labelTest->Text + " " + sudoku[i][j];
+		}
+		labelTest->Text = labelTest->Text + "\n";
+	}
+}
 
 };
 }

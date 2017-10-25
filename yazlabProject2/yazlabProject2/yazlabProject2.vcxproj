@@ -139,13 +139,17 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="Checker.cpp" />
     <ClCompile Include="mainForm.cpp" />
+    <ClCompile Include="Solver.cpp" />
     <ClCompile Include="threadForm.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Checker.h" />
     <ClInclude Include="mainForm.h">
       <FileType>CppForm</FileType>
     </ClInclude>
+    <ClInclude Include="Solver.h" />
     <ClInclude Include="threadForm.h">
       <FileType>CppForm</FileType>
     </ClInclude>
