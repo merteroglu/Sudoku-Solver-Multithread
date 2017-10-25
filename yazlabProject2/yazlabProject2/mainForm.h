@@ -9,6 +9,8 @@ namespace yazlabProject2 {
 	using namespace System::Data;
 	using namespace System::Drawing;
 
+    int matris[9][9];
+
 	/// <summary>
 	/// Summary for mainForm
 	/// </summary>
@@ -59,6 +61,8 @@ namespace yazlabProject2 {
 	private: System::Windows::Forms::Label^  labelT4Durum;
 	private: System::Windows::Forms::Label^  labelT4Step;
 	private: System::Windows::Forms::Label^  labelT4Time;
+	private: System::Windows::Forms::OpenFileDialog^  openFileDialog1;
+	private: System::Windows::Forms::Label^  labelTest;
 
 	protected:
 
@@ -84,14 +88,14 @@ namespace yazlabProject2 {
 		void InitializeComponent(void)
 		{
 			this->groupBox1 = (gcnew System::Windows::Forms::GroupBox());
-			this->txtPath = (gcnew System::Windows::Forms::TextBox());
-			this->btnOpen = (gcnew System::Windows::Forms::Button());
 			this->btnCoz = (gcnew System::Windows::Forms::Button());
+			this->btnOpen = (gcnew System::Windows::Forms::Button());
+			this->txtPath = (gcnew System::Windows::Forms::TextBox());
 			this->groupBox2 = (gcnew System::Windows::Forms::GroupBox());
-			this->labelT1Time = (gcnew System::Windows::Forms::Label());
-			this->labelT1Step = (gcnew System::Windows::Forms::Label());
-			this->labelT1Durum = (gcnew System::Windows::Forms::Label());
 			this->btnT1 = (gcnew System::Windows::Forms::Button());
+			this->labelT1Durum = (gcnew System::Windows::Forms::Label());
+			this->labelT1Step = (gcnew System::Windows::Forms::Label());
+			this->labelT1Time = (gcnew System::Windows::Forms::Label());
 			this->groupBox3 = (gcnew System::Windows::Forms::GroupBox());
 			this->btnT2 = (gcnew System::Windows::Forms::Button());
 			this->labelT2Durum = (gcnew System::Windows::Forms::Label());
@@ -107,6 +111,8 @@ namespace yazlabProject2 {
 			this->labelT4Durum = (gcnew System::Windows::Forms::Label());
 			this->labelT4Step = (gcnew System::Windows::Forms::Label());
 			this->labelT4Time = (gcnew System::Windows::Forms::Label());
+			this->openFileDialog1 = (gcnew System::Windows::Forms::OpenFileDialog());
+			this->labelTest = (gcnew System::Windows::Forms::Label());
 			this->groupBox1->SuspendLayout();
 			this->groupBox2->SuspendLayout();
 			this->groupBox3->SuspendLayout();
@@ -126,12 +132,14 @@ namespace yazlabProject2 {
 			this->groupBox1->TabStop = false;
 			this->groupBox1->Text = L"Dosya Seç";
 			// 
-			// txtPath
+			// btnCoz
 			// 
-			this->txtPath->Location = System::Drawing::Point(7, 20);
-			this->txtPath->Name = L"txtPath";
-			this->txtPath->Size = System::Drawing::Size(130, 20);
-			this->txtPath->TabIndex = 0;
+			this->btnCoz->Location = System::Drawing::Point(224, 19);
+			this->btnCoz->Name = L"btnCoz";
+			this->btnCoz->Size = System::Drawing::Size(75, 23);
+			this->btnCoz->TabIndex = 2;
+			this->btnCoz->Text = L"Çöz";
+			this->btnCoz->UseVisualStyleBackColor = true;
 			// 
 			// btnOpen
 			// 
@@ -141,15 +149,14 @@ namespace yazlabProject2 {
 			this->btnOpen->TabIndex = 1;
 			this->btnOpen->Text = L"Dosya Aç";
 			this->btnOpen->UseVisualStyleBackColor = true;
+			this->btnOpen->Click += gcnew System::EventHandler(this, &mainForm::btnOpen_Click);
 			// 
-			// btnCoz
+			// txtPath
 			// 
-			this->btnCoz->Location = System::Drawing::Point(224, 19);
-			this->btnCoz->Name = L"btnCoz";
-			this->btnCoz->Size = System::Drawing::Size(75, 23);
-			this->btnCoz->TabIndex = 2;
-			this->btnCoz->Text = L"Çöz";
-			this->btnCoz->UseVisualStyleBackColor = true;
+			this->txtPath->Location = System::Drawing::Point(7, 20);
+			this->txtPath->Name = L"txtPath";
+			this->txtPath->Size = System::Drawing::Size(130, 20);
+			this->txtPath->TabIndex = 0;
 			// 
 			// groupBox2
 			// 
@@ -164,23 +171,14 @@ namespace yazlabProject2 {
 			this->groupBox2->TabStop = false;
 			this->groupBox2->Text = L"Thread 1";
 			// 
-			// labelT1Time
+			// btnT1
 			// 
-			this->labelT1Time->AutoSize = true;
-			this->labelT1Time->Location = System::Drawing::Point(6, 55);
-			this->labelT1Time->Name = L"labelT1Time";
-			this->labelT1Time->Size = System::Drawing::Size(112, 13);
-			this->labelT1Time->TabIndex = 0;
-			this->labelT1Time->Text = L"Çözüm Süresi : 0.212s";
-			// 
-			// labelT1Step
-			// 
-			this->labelT1Step->AutoSize = true;
-			this->labelT1Step->Location = System::Drawing::Point(6, 36);
-			this->labelT1Step->Name = L"labelT1Step";
-			this->labelT1Step->Size = System::Drawing::Size(85, 13);
-			this->labelT1Step->TabIndex = 1;
-			this->labelT1Step->Text = L"Adým sayýsý : 539";
+			this->btnT1->Location = System::Drawing::Point(252, 19);
+			this->btnT1->Name = L"btnT1";
+			this->btnT1->Size = System::Drawing::Size(55, 49);
+			this->btnT1->TabIndex = 3;
+			this->btnT1->Text = L"Ýncele";
+			this->btnT1->UseVisualStyleBackColor = true;
 			// 
 			// labelT1Durum
 			// 
@@ -191,14 +189,23 @@ namespace yazlabProject2 {
 			this->labelT1Durum->TabIndex = 2;
 			this->labelT1Durum->Text = L"Durum : Çözüldü";
 			// 
-			// btnT1
+			// labelT1Step
 			// 
-			this->btnT1->Location = System::Drawing::Point(252, 19);
-			this->btnT1->Name = L"btnT1";
-			this->btnT1->Size = System::Drawing::Size(55, 49);
-			this->btnT1->TabIndex = 3;
-			this->btnT1->Text = L"Ýncele";
-			this->btnT1->UseVisualStyleBackColor = true;
+			this->labelT1Step->AutoSize = true;
+			this->labelT1Step->Location = System::Drawing::Point(6, 36);
+			this->labelT1Step->Name = L"labelT1Step";
+			this->labelT1Step->Size = System::Drawing::Size(85, 13);
+			this->labelT1Step->TabIndex = 1;
+			this->labelT1Step->Text = L"Adým sayýsý : 539";
+			// 
+			// labelT1Time
+			// 
+			this->labelT1Time->AutoSize = true;
+			this->labelT1Time->Location = System::Drawing::Point(6, 55);
+			this->labelT1Time->Name = L"labelT1Time";
+			this->labelT1Time->Size = System::Drawing::Size(112, 13);
+			this->labelT1Time->TabIndex = 0;
+			this->labelT1Time->Text = L"Çözüm Süresi : 0.212s";
 			// 
 			// groupBox3
 			// 
@@ -347,9 +354,21 @@ namespace yazlabProject2 {
 			this->labelT4Time->TabIndex = 0;
 			this->labelT4Time->Text = L"Çözüm Süresi : -";
 			// 
+			// openFileDialog1
+			// 
+			this->openFileDialog1->FileName = L"openFileDialog1";
+			// 
+			// labelTest
+			// 
+			this->labelTest->Location = System::Drawing::Point(19, 404);
+			this->labelTest->Name = L"labelTest";
+			this->labelTest->Size = System::Drawing::Size(306, 136);
+			this->labelTest->TabIndex = 5;
+			// 
 			// mainForm
 			// 
-			this->ClientSize = System::Drawing::Size(334, 419);
+			this->ClientSize = System::Drawing::Size(334, 594);
+			this->Controls->Add(this->labelTest);
 			this->Controls->Add(this->groupBox5);
 			this->Controls->Add(this->groupBox4);
 			this->Controls->Add(this->groupBox3);
@@ -373,5 +392,49 @@ namespace yazlabProject2 {
 
 		}
 #pragma endregion
-	};
+	private: System::Void btnOpen_Click(System::Object^  sender, System::EventArgs^  e) {
+	//	openFileDialog1->Filter = 		 
+		try {
+
+			if (openFileDialog1->ShowDialog() == System::Windows::Forms::DialogResult::OK) {
+				System::IO::StreamReader ^sr = gcnew System::IO::StreamReader(openFileDialog1->FileName);
+				txtPath->Text = openFileDialog1->FileName;
+				//MessageBox::Show(sr->ReadToEnd());
+
+				String^ str;
+				for (int i = 0; i < 9; i++) {
+					str = sr->ReadLine();
+					str = str->Replace("*", "0");
+					array<Char>^ dizi = gcnew array<Char>(9);
+					dizi = str->ToCharArray();
+					for (int j = 0; j < 9; j++) {
+
+						matris[i][j] = Convert::ToInt32(dizi->GetValue(j)->ToString());
+					}
+
+				}
+
+
+
+				for (int i = 0; i < 9; i++) {
+					for (int j = 0; j < 9; j++) {
+						labelTest->Text = labelTest->Text + " " + matris[i][j];
+					}
+					labelTest->Text = labelTest->Text + "\n";
+				}
+
+
+
+
+				sr->Close();
+			}
+
+		}
+		catch (...) {
+
+		}
+
+	}
+
+};
 }
