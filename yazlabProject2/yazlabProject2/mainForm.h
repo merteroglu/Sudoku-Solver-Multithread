@@ -1,6 +1,7 @@
 #pragma once
 
 #include "Solver.h"
+#include "FileProcessing.h"
 #include <Windows.h>
 #include <process.h>
 
@@ -442,6 +443,7 @@ private: System::Void sudokuThreadsDoldur() {
 
 private: System::Void btnCoz_Click(System::Object^  sender, System::EventArgs^  e) {
 	solveT4(sudoku);
+	
 	printMatris();
 }
 
