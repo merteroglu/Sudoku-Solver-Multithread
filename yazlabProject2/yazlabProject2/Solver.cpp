@@ -1,8 +1,10 @@
 #include "Solver.h"
 #include "Checker.h"
+#include "FileProcessing.h"
 
 int isClueGiven[9][9] = { 0 };
 int prevPosition[9][9][2];
+int step1 = 0, step2 = 0, step3 = 0, step4 = 0 ;
 
 void storeClueGiven(int sudoku[9][9]) {
 	for (int row = 0; row < 9; row++)
@@ -221,6 +223,10 @@ bool solveT1(int sudoku[9][9])
 				if (!goBack(row, column,sudoku))
 					return false;
 			}
+			else {
+				//writeFile("anims/thread1.txt", sudoku);
+			}
+			step1++;
 		}
 	}
 
@@ -243,6 +249,10 @@ bool solveT2(int sudoku[9][9])
 				if (!goBack2(row, column, sudoku))
 					return false;
 			}
+			else {
+				//writeFile("anims/thread2.txt", sudoku);
+			}
+			step2++;
 		}
 	}
 
@@ -265,6 +275,10 @@ bool solveT3(int sudoku[9][9])
 				if (!goBack3(row, column, sudoku))
 					return false;
 			}
+			else {
+				//writeFile("anims/thread3.txt", sudoku);
+			}
+			step3++;
 		}
 	}
 
@@ -287,8 +301,28 @@ bool solveT4(int sudoku[9][9])
 				if (!goBack4(row, column, sudoku))
 					return false;
 			}
+			else {
+				//writeFile("anims/thread4.txt", sudoku);
+			}
+			step4++;
 		}
 	}
 
 	return true;
+}
+
+int getStepT1() {
+	return step1;
+}
+
+int getStepT2() {
+	return step2;
+}
+
+int getStepT3() {
+	return step3;
+}
+
+int getStepT4() {
+	return step4;
 }

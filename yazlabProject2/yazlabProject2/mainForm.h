@@ -442,9 +442,38 @@ private: System::Void sudokuThreadsDoldur() {
 }
 
 private: System::Void btnCoz_Click(System::Object^  sender, System::EventArgs^  e) {
-	solveT4(sudoku);
-	
-	printMatris();
+	if (solveT1(sudokuT1)) {
+		labelT1Durum->Text = "Durum : Çözüldü";
+	}
+	else {
+		labelT1Durum->Text = "Durum : Çözülemedi";
+	}
+	labelT1Step->Text = "Adým sayýsý : " + getStepT1().ToString();
+
+	if (solveT2(sudokuT2)) {
+		labelT2Durum->Text = "Durum : Çözüldü";
+	}
+	else {
+		labelT2Durum->Text = "Durum : Çözülemedi";
+	}
+	labelT2Step->Text = "Adým sayýsý : " + getStepT2().ToString();
+	if (solveT3(sudokuT3)) {
+		labelT3Durum->Text = "Durum : Çözüldü";
+	}
+	else {
+		labelT3Durum->Text = "Durum : Çözülemedi";
+	}
+	labelT3Step->Text = "Adým sayýsý : " + getStepT3().ToString();
+
+	if (solveT4(sudokuT4)) {
+		labelT4Durum->Text = "Durum : Çözüldü";
+	}
+	else {
+		labelT4Durum->Text = "Durum : Çözülemedi";
+	}
+	labelT4Step->Text = "Adým sayýsý : " + getStepT4().ToString();
+
+	//printMatris();
 }
 
 private: System::Void printMatris() {

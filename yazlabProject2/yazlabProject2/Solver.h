@@ -14,3 +14,7 @@ bool solveT1(int sudoku[9][9]);
 bool solveT2(int sudoku[9][9]);
 bool solveT3(int sudoku[9][9]);
 bool solveT4(int sudoku[9][9]);
+int getStepT1();
+int getStepT2();
+int getStepT3();
+int getStepT4();
