@@ -441,7 +441,7 @@ private: System::Void sudokuThreadsDoldur() {
 }
 
 private: System::Void btnCoz_Click(System::Object^  sender, System::EventArgs^  e) {
-	solveT3(sudoku);
+	solveT4(sudoku);
 	printMatris();
 }
 

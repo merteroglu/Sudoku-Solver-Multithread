@@ -275,7 +275,7 @@ bool solveT3(int sudoku[9][9])
 bool solveT4(int sudoku[9][9])
 {
 	storeClueGiven(sudoku);
-	storePositions3();
+	storePositions4();
 
 	for (int column = 8; column >= 0; column--)
 	{
