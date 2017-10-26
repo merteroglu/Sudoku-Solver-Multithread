@@ -1,6 +1,8 @@
 #pragma once
 
 #include "Solver.h"
+#include <Windows.h>
+#include <process.h>
 
 namespace yazlabProject2 {
 
@@ -12,6 +14,10 @@ namespace yazlabProject2 {
 	using namespace System::Drawing;
 
     int sudoku[9][9];
+	int sudokuT1[9][9];
+	int sudokuT2[9][9];
+	int sudokuT3[9][9];
+	int sudokuT4[9][9];
 
 	/// <summary>
 	/// Summary for mainForm
@@ -67,12 +73,6 @@ namespace yazlabProject2 {
 	private: System::Windows::Forms::Label^  labelTest;
 
 	protected:
-
-
-
-
-
-
 
 
 	private:
@@ -395,7 +395,8 @@ namespace yazlabProject2 {
 
 		}
 #pragma endregion
-	private: System::Void btnOpen_Click(System::Object^  sender, System::EventArgs^  e) {
+	
+private: System::Void btnOpen_Click(System::Object^  sender, System::EventArgs^  e) {
 			 
 		try {
 			openFileDialog1->Filter = "Text files |*.txt";
@@ -418,6 +419,7 @@ namespace yazlabProject2 {
 
 				}
 
+				sudokuThreadsDoldur();
 				printMatris();
 
 				sr->Close();
@@ -430,8 +432,16 @@ namespace yazlabProject2 {
 
 	}
 
+private: System::Void sudokuThreadsDoldur() {
+	for (int i = 0; i < 9; i++) {
+		for (int j = 0; j < 9; j++) {
+			sudokuT1[i][j] = sudokuT2[i][j] = sudokuT3[i][j] = sudokuT4[i][j] = sudoku[i][j];
+		}
+	}
+}
+
 private: System::Void btnCoz_Click(System::Object^  sender, System::EventArgs^  e) {
-	solve(sudoku);
+	solveT3(sudoku);
 	printMatris();
 }
 
@@ -444,6 +454,8 @@ private: System::Void printMatris() {
 		labelTest->Text = labelTest->Text + "\n";
 	}
 }
+
+		 
 
 };
 }
