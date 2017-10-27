@@ -213,6 +213,8 @@ bool solveT1(int sudoku[9][9])
 	storeClueGiven(sudoku);
 	storePositions();
 
+	FileProcessing^ writer = gcnew FileProcessing("anims/thread1.txt");
+
 	for (int row = 0; row < 9; row++)
 	{
 		for (int column = 0; column < 9; column++)
@@ -220,16 +222,18 @@ bool solveT1(int sudoku[9][9])
 			if (!placeNum(row, column,sudoku))
 			{
 				sudoku[row][column] = 0;
-				if (!goBack(row, column,sudoku))
+				if (!goBack(row, column, sudoku)) {
+					writer->writerClose();
 					return false;
+					}
 			}
 			else {
-				//writeFile("anims/thread1.txt", sudoku);
+				writer->writeFile(sudoku);
 			}
 			step1++;
 		}
 	}
-
+	writer->writerClose();
 	return true;
 }
 
@@ -238,6 +242,7 @@ bool solveT2(int sudoku[9][9])
 {
 	storeClueGiven(sudoku);
 	storePositions2();
+	FileProcessing^ writer = gcnew FileProcessing("anims/thread2.txt");
 
 	for (int row = 8; row >= 0; row--)
 	{
@@ -246,16 +251,19 @@ bool solveT2(int sudoku[9][9])
 			if (!placeNum(row, column, sudoku))
 			{
 				sudoku[row][column] = 0;
-				if (!goBack2(row, column, sudoku))
+				if (!goBack2(row, column, sudoku)) {
+					writer->writerClose();
 					return false;
+				}
+					
 			}
 			else {
-				//writeFile("anims/thread2.txt", sudoku);
+				writer->writeFile(sudoku);
 			}
 			step2++;
 		}
 	}
-
+	writer->writerClose();
 	return true;
 }
 
@@ -265,6 +273,8 @@ bool solveT3(int sudoku[9][9])
 	storeClueGiven(sudoku);
 	storePositions3();
 
+	FileProcessing^ writer = gcnew FileProcessing("anims/thread3.txt");
+	
 	for (int column = 0; column < 9; column++)
 	{
 		for (int row = 0; row < 9; row++)
@@ -272,16 +282,18 @@ bool solveT3(int sudoku[9][9])
 			if (!placeNum(row, column, sudoku))
 			{
 				sudoku[row][column] = 0;
-				if (!goBack3(row, column, sudoku))
+				if (!goBack3(row, column, sudoku)) {
+					writer->writerClose();
 					return false;
+				}
 			}
 			else {
-				//writeFile("anims/thread3.txt", sudoku);
+				writer->writeFile(sudoku);
 			}
 			step3++;
 		}
 	}
-
+	writer->writerClose();
 	return true;
 }
 
@@ -290,6 +302,7 @@ bool solveT4(int sudoku[9][9])
 {
 	storeClueGiven(sudoku);
 	storePositions4();
+	FileProcessing^ writer = gcnew FileProcessing("anims/thread4.txt");
 
 	for (int column = 8; column >= 0; column--)
 	{
@@ -298,16 +311,18 @@ bool solveT4(int sudoku[9][9])
 			if (!placeNum(row, column, sudoku))
 			{
 				sudoku[row][column] = 0;
-				if (!goBack4(row, column, sudoku))
+				if (!goBack4(row, column, sudoku)) {
+					writer->writerClose();
 					return false;
+				}
 			}
 			else {
-				//writeFile("anims/thread4.txt", sudoku);
+				writer->writeFile(sudoku);
 			}
 			step4++;
 		}
 	}
-
+	writer->writerClose();
 	return true;
 }
 

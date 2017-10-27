@@ -140,7 +140,6 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Checker.cpp" />
-    <ClCompile Include="FileProcessing.cpp" />
     <ClCompile Include="mainForm.cpp" />
     <ClCompile Include="Solver.cpp" />
     <ClCompile Include="threadForm.cpp" />

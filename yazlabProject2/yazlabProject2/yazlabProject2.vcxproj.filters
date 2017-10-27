@@ -27,9 +27,6 @@
     <ClCompile Include="Checker.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="FileProcessing.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="mainForm.h">
