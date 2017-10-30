@@ -229,8 +229,9 @@ bool solveT1(int sudoku[9][9])
 			}
 			else {
 				writer->writeFile(sudoku);
+				step1++;
 			}
-			step1++;
+			
 		}
 	}
 	writer->writerClose();
@@ -259,8 +260,9 @@ bool solveT2(int sudoku[9][9])
 			}
 			else {
 				writer->writeFile(sudoku);
+				step2++;
 			}
-			step2++;
+			
 		}
 	}
 	writer->writerClose();
@@ -289,8 +291,9 @@ bool solveT3(int sudoku[9][9])
 			}
 			else {
 				writer->writeFile(sudoku);
+				step3++;
 			}
-			step3++;
+			
 		}
 	}
 	writer->writerClose();
@@ -318,8 +321,9 @@ bool solveT4(int sudoku[9][9])
 			}
 			else {
 				writer->writeFile(sudoku);
+				step4++;
 			}
-			step4++;
+			
 		}
 	}
 	writer->writerClose();

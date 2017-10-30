@@ -2,6 +2,7 @@
 
 #include "Solver.h"
 #include "FileProcessing.h"
+#include "threadForm.h"
 #include <Windows.h>
 #include <process.h>
 
@@ -13,6 +14,7 @@ namespace yazlabProject2 {
 	using namespace System::Windows::Forms;
 	using namespace System::Data;
 	using namespace System::Drawing;
+	using namespace System::Threading;
 
     int sudoku[9][9];
 	int sudokuT1[9][9];
@@ -183,6 +185,7 @@ namespace yazlabProject2 {
 			this->btnT1->TabIndex = 3;
 			this->btnT1->Text = L"Ýncele";
 			this->btnT1->UseVisualStyleBackColor = true;
+			this->btnT1->Click += gcnew System::EventHandler(this, &mainForm::btnT1_Click);
 			// 
 			// labelT1Durum
 			// 
@@ -232,6 +235,7 @@ namespace yazlabProject2 {
 			this->btnT2->TabIndex = 3;
 			this->btnT2->Text = L"Ýncele";
 			this->btnT2->UseVisualStyleBackColor = true;
+			this->btnT2->Click += gcnew System::EventHandler(this, &mainForm::btnT2_Click);
 			// 
 			// labelT2Durum
 			// 
@@ -281,6 +285,7 @@ namespace yazlabProject2 {
 			this->btnT3->TabIndex = 3;
 			this->btnT3->Text = L"Ýncele";
 			this->btnT3->UseVisualStyleBackColor = true;
+			this->btnT3->Click += gcnew System::EventHandler(this, &mainForm::btnT3_Click);
 			// 
 			// labelT3Durum
 			// 
@@ -330,6 +335,7 @@ namespace yazlabProject2 {
 			this->btnT4->TabIndex = 3;
 			this->btnT4->Text = L"Ýncele";
 			this->btnT4->UseVisualStyleBackColor = true;
+			this->btnT4->Click += gcnew System::EventHandler(this, &mainForm::btnT4_Click);
 			// 
 			// labelT4Durum
 			// 
@@ -487,6 +493,32 @@ private: System::Void printMatris() {
 }
 
 		 
+
+private: System::Void btnT1_Click(System::Object^  sender, System::EventArgs^  e) {
+
+	threadForm ^ t1Form = gcnew threadForm(1, 0, getStepT1());
+
+	t1Form->Show();
+
+}
+
+private: System::Void btnT2_Click(System::Object^  sender, System::EventArgs^  e) {
+	threadForm ^ t2Form = gcnew threadForm(2, 0, getStepT2());
+
+	t2Form->Show();
+}
+
+private: System::Void btnT3_Click(System::Object^  sender, System::EventArgs^  e) {
+	threadForm ^ t3Form = gcnew threadForm(3, 0, getStepT3());
+
+	t3Form->Show();
+}
+
+private: System::Void btnT4_Click(System::Object^  sender, System::EventArgs^  e) {
+	threadForm ^ t4Form = gcnew threadForm(4, 0, getStepT4());
+
+	t4Form->Show();
+}
 
 };
 }
