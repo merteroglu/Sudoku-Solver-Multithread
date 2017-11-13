@@ -1,6 +1,7 @@
 #pragma once
 #include "Controller.h"
 #include "FileProcessing.h"
+#include <Windows.h>
 
 public ref class Solver {
 public:
@@ -9,6 +10,8 @@ public:
 	array<int^, 3>^ prevPosition = gcnew array<int^, 3>(9, 9, 2);
 	array<int^, 2>^ sudokuMatrix = gcnew array<int^, 2>(9, 9);
 	
+	int workingTime;
+
 	Controller^ checker = gcnew Controller();
 
 	bool finish = false;
@@ -236,6 +239,9 @@ public:
 	// Thread 1
 	void solveT1()
 	{
+		SYSTEMTIME st; 
+		SYSTEMTIME ft;
+		GetSystemTime(&st);
 		int sudoku[9][9];
 		for (int i = 0; i < 9; i++) {
 			for (int j = 0; j < 9; j++) {
@@ -268,12 +274,16 @@ public:
 			}
 		}
 		writer->writerClose();
+		GetSystemTime(&ft);
+		workingTime = (ft.wSecond - st.wSecond) * 1000 + (ft.wMilliseconds - st.wMilliseconds);
 		finish = true;
 	}
 
 	// Thread 2
 	void solveT2()
 	{
+		SYSTEMTIME st, ft;
+		GetSystemTime(&st);
 		int sudoku[9][9];
 		for (int i = 0; i < 9; i++) {
 			for (int j = 0; j < 9; j++) {
@@ -307,12 +317,16 @@ public:
 			}
 		}
 		writer->writerClose();
+		GetSystemTime(&ft);
+		workingTime = (ft.wSecond - st.wSecond) * 1000 + (ft.wMilliseconds - st.wMilliseconds);
 		finish = true;
 	}
 
 	// Thread 3
 	void solveT3()
 	{
+		SYSTEMTIME st, ft;
+		GetSystemTime(&st);
 		int sudoku[9][9];
 		for (int i = 0; i < 9; i++) {
 			for (int j = 0; j < 9; j++) {
@@ -345,12 +359,16 @@ public:
 			}
 		}
 		writer->writerClose();
+		GetSystemTime(&ft);
+		workingTime = (ft.wSecond - st.wSecond) * 1000 + (ft.wMilliseconds - st.wMilliseconds);
 		finish = true;
 	}
 
 	// Thread 4
 	void solveT4()
 	{
+		SYSTEMTIME st, ft;
+		GetSystemTime(&st);
 		int sudoku[9][9];
 		for (int i = 0; i < 9; i++) {
 			for (int j = 0; j < 9; j++) {
@@ -383,6 +401,8 @@ public:
 			}
 		}
 		writer->writerClose();
+		GetSystemTime(&ft);
+		workingTime = (ft.wSecond - st.wSecond) * 1000 + (ft.wMilliseconds - st.wMilliseconds);
 		finish = true;
 	}
 
@@ -402,6 +422,9 @@ public:
 		return step4;
 	}
 
+	int getWorkingTime() {
+		return workingTime;
+	}
 
 };
 

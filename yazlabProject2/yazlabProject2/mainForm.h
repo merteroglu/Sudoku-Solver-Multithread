@@ -489,6 +489,7 @@ private: System::Void btnCoz_Click(System::Object^  sender, System::EventArgs^  
 			labelT2Durum->Text = "Durum : Çözülemedi";
 			labelT3Durum->Text = "Durum : Çözülemedi";
 			labelT4Durum->Text = "Durum : Çözülemedi";
+			labelT1Time->Text = "Çözüm Süresi : " +Globals::solvert1->getWorkingTime() + " ms";
 			labelT1Step->Text = "Adım sayısı : " + Globals::solvert1->getStepT1().ToString();
 			labelT2Step->Text = "Adım sayısı : " + Globals::solvert2->getStepT2().ToString();
 			labelT3Step->Text = "Adım sayısı : " + Globals::solvert3->getStepT3().ToString();
@@ -503,6 +504,7 @@ private: System::Void btnCoz_Click(System::Object^  sender, System::EventArgs^  
 			labelT1Durum->Text = "Durum : Çözülemedi";
 			labelT3Durum->Text = "Durum : Çözülemedi";
 			labelT4Durum->Text = "Durum : Çözülemedi";
+			labelT2Time->Text = "Çözüm Süresi : " + Globals::solvert2->getWorkingTime() + " ms";
 			labelT1Step->Text = "Adım sayısı : " + Globals::solvert1->getStepT1().ToString();
 			labelT2Step->Text = "Adım sayısı : " + Globals::solvert2->getStepT2().ToString();
 			labelT3Step->Text = "Adım sayısı : " + Globals::solvert3->getStepT3().ToString();
@@ -517,6 +519,7 @@ private: System::Void btnCoz_Click(System::Object^  sender, System::EventArgs^  
 			labelT2Durum->Text = "Durum : Çözülemedi";
 			labelT1Durum->Text = "Durum : Çözülemedi";
 			labelT4Durum->Text = "Durum : Çözülemedi";
+			labelT3Time->Text = "Çözüm Süresi : " + Globals::solvert3->getWorkingTime() + " ms";
 			labelT1Step->Text = "Adım sayısı : " + Globals::solvert1->getStepT1().ToString();
 			labelT2Step->Text = "Adım sayısı : " + Globals::solvert2->getStepT2().ToString();
 			labelT3Step->Text = "Adım sayısı : " + Globals::solvert3->getStepT3().ToString();
@@ -531,6 +534,7 @@ private: System::Void btnCoz_Click(System::Object^  sender, System::EventArgs^  
 			labelT2Durum->Text = "Durum : Çözülemedi";
 			labelT3Durum->Text = "Durum : Çözülemedi";
 			labelT1Durum->Text = "Durum : Çözülemedi";
+			labelT4Time->Text = "Çözüm Süresi : " + Globals::solvert4->getWorkingTime() + " ms";
 			labelT1Step->Text = "Adım sayısı : " + Globals::solvert1->getStepT1().ToString();
 			labelT2Step->Text = "Adım sayısı : " + Globals::solvert2->getStepT2().ToString();
 			labelT3Step->Text = "Adım sayısı : " + Globals::solvert3->getStepT3().ToString();
@@ -539,39 +543,6 @@ private: System::Void btnCoz_Click(System::Object^  sender, System::EventArgs^  
 		}
 	}
 
-	/*
-	if (Globals::solvert1->solveT1(sudokuT1)) {
-		labelT1Durum->Text = "Durum : Çözüldü";
-	}
-	else {
-		labelT1Durum->Text = "Durum : Çözülemedi";
-	}
-
-	labelT1Step->Text = "Adım sayısı : " + Globals::solvert1->getStepT1().ToString();
-
-	if (Globals::solvert2->solveT2(sudokuT2)) {
-		labelT2Durum->Text = "Durum : Çözüldü";
-	}
-	else {
-		labelT2Durum->Text = "Durum : Çözülemedi";
-	}
-	labelT2Step->Text = "Adım sayısı : " + Globals::solvert2->getStepT2().ToString();
-	if (Globals::solvert3->solveT3(sudokuT3)) {
-		labelT3Durum->Text = "Durum : Çözüldü";
-	}
-	else {
-		labelT3Durum->Text = "Durum : Çözülemedi";
-	}
-	labelT3Step->Text = "Adım sayısı : " + Globals::solvert3->getStepT3().ToString();
-
-	if (Globals::solvert4->solveT4(sudokuT4)) {
-		labelT4Durum->Text = "Durum : Çözüldü";
-	}
-	else {
-		labelT4Durum->Text = "Durum : Çözülemedi";
-	}
-	labelT4Step->Text = "Adım sayısı : " + Globals::solvert4->getStepT4().ToString();
-	*/
 	btnT1->Enabled = true;
 	btnT2->Enabled = true;
 	btnT3->Enabled = true;
