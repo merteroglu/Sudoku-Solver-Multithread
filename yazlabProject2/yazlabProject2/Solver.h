@@ -7,13 +7,21 @@ public:
 
 	array<int^, 2>^ isClueGiven = gcnew array<int^, 2>(9, 9);
 	array<int^, 3>^ prevPosition = gcnew array<int^, 3>(9, 9, 2);
+	array<int^, 2>^ sudokuMatrix = gcnew array<int^, 2>(9, 9);
 	
 	Controller^ checker = gcnew Controller();
+
+	bool finish = false;
 	
 	int step1 = 0, step2 = 0, step3 = 0, step4 = 0;
 
-	Solver() {
+	Solver(int sudoku[9][9]) {
 		fillClueGiven();
+		for (int i = 0; i < 9; i++) {
+			for (int j = 0; j < 9; j++) {
+				sudokuMatrix[i, j] = sudoku[i][j];
+			}
+		}
 	}
 
 	void fillClueGiven() {
@@ -226,8 +234,14 @@ public:
 
 
 	// Thread 1
-	bool solveT1(int sudoku[9][9])
+	void solveT1()
 	{
+		int sudoku[9][9];
+		for (int i = 0; i < 9; i++) {
+			for (int j = 0; j < 9; j++) {
+				  sudoku[i][j] = (int) sudokuMatrix[i, j];
+			}
+		}
 		fillClueGiven();
 		storeClueGiven(sudoku);
 		storePositions();
@@ -243,7 +257,7 @@ public:
 					sudoku[row][column] = 0;
 					if (!goBack(row, column, sudoku)) {
 						writer->writerClose();
-						return false;
+						finish = false;
 					}
 				}
 				else {
@@ -254,12 +268,18 @@ public:
 			}
 		}
 		writer->writerClose();
-		return true;
+		finish = true;
 	}
 
 	// Thread 2
-	bool solveT2(int sudoku[9][9])
+	void solveT2()
 	{
+		int sudoku[9][9];
+		for (int i = 0; i < 9; i++) {
+			for (int j = 0; j < 9; j++) {
+				sudoku[i][j] = (int)sudokuMatrix[i, j];
+			}
+		}
 		fillClueGiven();
 		storeClueGiven(sudoku);
 		storePositions2();
@@ -275,7 +295,7 @@ public:
 					sudoku[row][column] = 0;
 					if (!goBack2(row, column, sudoku)) {
 						writer->writerClose();
-						return false;
+						finish = false;
 					}
 
 				}
@@ -287,12 +307,18 @@ public:
 			}
 		}
 		writer->writerClose();
-		return true;
+		finish = true;
 	}
 
 	// Thread 3
-	bool solveT3(int sudoku[9][9])
+	void solveT3()
 	{
+		int sudoku[9][9];
+		for (int i = 0; i < 9; i++) {
+			for (int j = 0; j < 9; j++) {
+				sudoku[i][j] = (int)sudokuMatrix[i, j];
+			}
+		}
 		fillClueGiven();
 		storeClueGiven(sudoku);
 		storePositions3();
@@ -308,7 +334,7 @@ public:
 					sudoku[row][column] = 0;
 					if (!goBack3(row, column, sudoku)) {
 						writer->writerClose();
-						return false;
+						finish = false;
 					}
 				}
 				else {
@@ -319,12 +345,18 @@ public:
 			}
 		}
 		writer->writerClose();
-		return true;
+		finish = true;
 	}
 
 	// Thread 4
-	bool solveT4(int sudoku[9][9])
+	void solveT4()
 	{
+		int sudoku[9][9];
+		for (int i = 0; i < 9; i++) {
+			for (int j = 0; j < 9; j++) {
+				sudoku[i][j] = (int)sudokuMatrix[i, j];
+			}
+		}
 		fillClueGiven();
 		storeClueGiven(sudoku);
 		storePositions4();
@@ -340,7 +372,7 @@ public:
 					sudoku[row][column] = 0;
 					if (!goBack4(row, column, sudoku)) {
 						writer->writerClose();
-						return false;
+						finish = false;
 					}
 				}
 				else {
@@ -351,7 +383,7 @@ public:
 			}
 		}
 		writer->writerClose();
-		return true;
+		finish = true;
 	}
 
 	int getStepT1() {
@@ -369,6 +401,7 @@ public:
 	int getStepT4() {
 		return step4;
 	}
+
 
 };
 

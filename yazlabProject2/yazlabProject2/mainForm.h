@@ -32,10 +32,10 @@ namespace yazlabProject2 {
 	public:
 
 		ref struct Globals {
-			static Solver ^solvert1 = gcnew Solver();
-			static Solver^ solvert2 = gcnew Solver();
-			static Solver^ solvert3 = gcnew Solver();
-			static Solver^ solvert4 = gcnew Solver();
+			static Solver ^solvert1;
+			static Solver^ solvert2;
+			static Solver^ solvert3;
+			static Solver^ solvert4;
 		};
 
 		mainForm(void)
@@ -442,6 +442,11 @@ private: System::Void btnOpen_Click(System::Object^  sender, System::EventArgs^ 
 				}
 
 				sudokuThreadsDoldur();
+				Globals::solvert1 = gcnew Solver(sudokuT1);
+				Globals::solvert2 = gcnew Solver(sudokuT2);
+				Globals::solvert3 = gcnew Solver(sudokuT3);
+				Globals::solvert4 = gcnew Solver(sudokuT4);
+
 				printMatris();
 				btnCoz->Enabled = true;
 
@@ -465,8 +470,76 @@ private: System::Void sudokuThreadsDoldur() {
 
 private: System::Void btnCoz_Click(System::Object^  sender, System::EventArgs^  e) {
 
-	
+	Thread^ t1 = gcnew Thread(gcnew ThreadStart(Globals::solvert1, &Solver::solveT1));
+	Thread^ t2 = gcnew Thread(gcnew ThreadStart(Globals::solvert2, &Solver::solveT2));
+	Thread^ t3 = gcnew Thread(gcnew ThreadStart(Globals::solvert3, &Solver::solveT3));
+	Thread^ t4 = gcnew Thread(gcnew ThreadStart(Globals::solvert4, &Solver::solveT4));
 
+	t1->Start();
+	t2->Start();
+	t3->Start();
+	t4->Start();
+
+	while (true) {
+		if (Globals::solvert1->finish) {
+			t2->Abort();
+			t3->Abort();
+			t4->Abort();
+			labelT1Durum->Text = "Durum : Çözüldü";
+			labelT2Durum->Text = "Durum : Çözülemedi";
+			labelT3Durum->Text = "Durum : Çözülemedi";
+			labelT4Durum->Text = "Durum : Çözülemedi";
+			labelT1Step->Text = "Adım sayısı : " + Globals::solvert1->getStepT1().ToString();
+			labelT2Step->Text = "Adım sayısı : " + Globals::solvert2->getStepT2().ToString();
+			labelT3Step->Text = "Adım sayısı : " + Globals::solvert3->getStepT3().ToString();
+			labelT4Step->Text = "Adım sayısı : " + Globals::solvert4->getStepT4().ToString();
+			break;
+		}
+		else if (Globals::solvert2->finish) {
+			t1->Abort();
+			t3->Abort();
+			t4->Abort();
+			labelT2Durum->Text = "Durum : Çözüldü";
+			labelT1Durum->Text = "Durum : Çözülemedi";
+			labelT3Durum->Text = "Durum : Çözülemedi";
+			labelT4Durum->Text = "Durum : Çözülemedi";
+			labelT1Step->Text = "Adım sayısı : " + Globals::solvert1->getStepT1().ToString();
+			labelT2Step->Text = "Adım sayısı : " + Globals::solvert2->getStepT2().ToString();
+			labelT3Step->Text = "Adım sayısı : " + Globals::solvert3->getStepT3().ToString();
+			labelT4Step->Text = "Adım sayısı : " + Globals::solvert4->getStepT4().ToString();
+			break;
+		}
+		else if (Globals::solvert3->finish) {
+			t1->Abort();
+			t2->Abort();
+			t4->Abort();
+			labelT3Durum->Text = "Durum : Çözüldü";
+			labelT2Durum->Text = "Durum : Çözülemedi";
+			labelT1Durum->Text = "Durum : Çözülemedi";
+			labelT4Durum->Text = "Durum : Çözülemedi";
+			labelT1Step->Text = "Adım sayısı : " + Globals::solvert1->getStepT1().ToString();
+			labelT2Step->Text = "Adım sayısı : " + Globals::solvert2->getStepT2().ToString();
+			labelT3Step->Text = "Adım sayısı : " + Globals::solvert3->getStepT3().ToString();
+			labelT4Step->Text = "Adım sayısı : " + Globals::solvert4->getStepT4().ToString();
+			break;
+		}
+		else if (Globals::solvert4->finish) {
+			t1->Abort();
+			t2->Abort();
+			t3->Abort();
+			labelT4Durum->Text = "Durum : Çözüldü";
+			labelT2Durum->Text = "Durum : Çözülemedi";
+			labelT3Durum->Text = "Durum : Çözülemedi";
+			labelT1Durum->Text = "Durum : Çözülemedi";
+			labelT1Step->Text = "Adım sayısı : " + Globals::solvert1->getStepT1().ToString();
+			labelT2Step->Text = "Adım sayısı : " + Globals::solvert2->getStepT2().ToString();
+			labelT3Step->Text = "Adım sayısı : " + Globals::solvert3->getStepT3().ToString();
+			labelT4Step->Text = "Adım sayısı : " + Globals::solvert4->getStepT4().ToString();
+			break;
+		}
+	}
+
+	/*
 	if (Globals::solvert1->solveT1(sudokuT1)) {
 		labelT1Durum->Text = "Durum : Çözüldü";
 	}
@@ -498,7 +571,7 @@ private: System::Void btnCoz_Click(System::Object^  sender, System::EventArgs^  
 		labelT4Durum->Text = "Durum : Çözülemedi";
 	}
 	labelT4Step->Text = "Adım sayısı : " + Globals::solvert4->getStepT4().ToString();
-
+	*/
 	btnT1->Enabled = true;
 	btnT2->Enabled = true;
 	btnT3->Enabled = true;
