@@ -392,7 +392,7 @@ namespace yazlabProject2 {
 			// 
 			// mainForm
 			// 
-			this->ClientSize = System::Drawing::Size(334, 594);
+			this->ClientSize = System::Drawing::Size(334, 401);
 			this->Controls->Add(this->labelTest);
 			this->Controls->Add(this->groupBox5);
 			this->Controls->Add(this->groupBox4);
@@ -494,6 +494,9 @@ private: System::Void btnCoz_Click(System::Object^  sender, System::EventArgs^  
 			labelT2Step->Text = "Adým sayýsý : " + Globals::solvert2->getStepT2().ToString();
 			labelT3Step->Text = "Adým sayýsý : " + Globals::solvert3->getStepT3().ToString();
 			labelT4Step->Text = "Adým sayýsý : " + Globals::solvert4->getStepT4().ToString();
+			Globals::solvert2->writer->writerClose();
+			Globals::solvert3->writer->writerClose();
+			Globals::solvert4->writer->writerClose();
 			break;
 		}
 		else if (Globals::solvert2->finish) {
@@ -509,6 +512,9 @@ private: System::Void btnCoz_Click(System::Object^  sender, System::EventArgs^  
 			labelT2Step->Text = "Adým sayýsý : " + Globals::solvert2->getStepT2().ToString();
 			labelT3Step->Text = "Adým sayýsý : " + Globals::solvert3->getStepT3().ToString();
 			labelT4Step->Text = "Adým sayýsý : " + Globals::solvert4->getStepT4().ToString();
+			Globals::solvert1->writer->writerClose();
+			Globals::solvert3->writer->writerClose();
+			Globals::solvert4->writer->writerClose();
 			break;
 		}
 		else if (Globals::solvert3->finish) {
@@ -524,6 +530,9 @@ private: System::Void btnCoz_Click(System::Object^  sender, System::EventArgs^  
 			labelT2Step->Text = "Adým sayýsý : " + Globals::solvert2->getStepT2().ToString();
 			labelT3Step->Text = "Adým sayýsý : " + Globals::solvert3->getStepT3().ToString();
 			labelT4Step->Text = "Adým sayýsý : " + Globals::solvert4->getStepT4().ToString();
+			Globals::solvert1->writer->writerClose();
+			Globals::solvert2->writer->writerClose();
+			Globals::solvert4->writer->writerClose();
 			break;
 		}
 		else if (Globals::solvert4->finish) {
@@ -539,6 +548,9 @@ private: System::Void btnCoz_Click(System::Object^  sender, System::EventArgs^  
 			labelT2Step->Text = "Adým sayýsý : " + Globals::solvert2->getStepT2().ToString();
 			labelT3Step->Text = "Adým sayýsý : " + Globals::solvert3->getStepT3().ToString();
 			labelT4Step->Text = "Adým sayýsý : " + Globals::solvert4->getStepT4().ToString();
+			Globals::solvert1->writer->writerClose();
+			Globals::solvert2->writer->writerClose();
+			Globals::solvert3->writer->writerClose();
 			break;
 		}
 	}

@@ -13,6 +13,7 @@ public:
 	int workingTime;
 
 	Controller^ checker = gcnew Controller();
+	FileProcessing^ writer;
 
 	bool finish = false;
 	
@@ -252,7 +253,7 @@ public:
 		storeClueGiven(sudoku);
 		storePositions();
 		step1 = 0;
-		FileProcessing^ writer = gcnew FileProcessing("anims/thread1.txt");
+		writer = gcnew FileProcessing("anims/thread1.txt");
 
 		for (int row = 0; row < 9; row++)
 		{
@@ -294,7 +295,7 @@ public:
 		storeClueGiven(sudoku);
 		storePositions2();
 		step2 = 0;
-		FileProcessing^ writer = gcnew FileProcessing("anims/thread2.txt");
+		writer = gcnew FileProcessing("anims/thread2.txt");
 
 		for (int row = 8; row >= 0; row--)
 		{
@@ -337,7 +338,7 @@ public:
 		storeClueGiven(sudoku);
 		storePositions3();
 		step3 = 0;
-		FileProcessing^ writer = gcnew FileProcessing("anims/thread3.txt");
+		writer = gcnew FileProcessing("anims/thread3.txt");
 
 		for (int column = 0; column < 9; column++)
 		{
@@ -379,7 +380,7 @@ public:
 		storeClueGiven(sudoku);
 		storePositions4();
 		step4 = 0;
-		FileProcessing^ writer = gcnew FileProcessing("anims/thread4.txt");
+		writer = gcnew FileProcessing("anims/thread4.txt");
 
 		for (int column = 8; column >= 0; column--)
 		{

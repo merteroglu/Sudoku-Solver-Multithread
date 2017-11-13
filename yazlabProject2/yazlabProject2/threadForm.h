@@ -215,7 +215,7 @@ namespace yazlabProject2 {
 			// 
 			// timer1
 			// 
-			this->timer1->Interval = 30;
+			this->timer1->Interval = 20;
 			this->timer1->Tick += gcnew System::EventHandler(this, &threadForm::timer1_Tick);
 			// 
 			// labelTotalStep
@@ -263,7 +263,7 @@ namespace yazlabProject2 {
 			
 			int stepPlus;
 
-			if (step < arrayList->Count - 1) {
+			if (step <= arrayList->Count - 9) {
 				stepPlus = step + 9;
 			}else{
 				timer1->Enabled = false;
