@@ -7,7 +7,7 @@ public:
 	System::IO::StreamWriter^ sw;
 
 	FileProcessing(System::String^ fileName) {
-		sw = gcnew System::IO::StreamWriter(fileName,true);
+		sw = gcnew System::IO::StreamWriter(fileName);
 	}
 
 	void writeFile(int sudoku[9][9]) {

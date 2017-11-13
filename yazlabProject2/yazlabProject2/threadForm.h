@@ -51,6 +51,7 @@ namespace yazlabProject2 {
 			threadNo = tNo;
 			sure = s;
 			totalStep = totalSt;
+			this->Text = "Thread" + threadNo;
 			labelThreadNo->Text = "Thread No: " + threadNo;
 			labelSure->Text = "Çözüm süresi:" + sure +"s";
 			labelTotalStep->Text = "Toplam adým:" + totalStep;

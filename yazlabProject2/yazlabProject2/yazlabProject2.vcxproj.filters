@@ -21,12 +21,6 @@
     <ClCompile Include="threadForm.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Solver.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Checker.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="mainForm.h">
@@ -38,10 +32,10 @@
     <ClInclude Include="Solver.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Checker.h">
+    <ClInclude Include="FileProcessing.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="FileProcessing.h">
+    <ClInclude Include="Controller.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

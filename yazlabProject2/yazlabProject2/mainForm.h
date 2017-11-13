@@ -22,12 +22,22 @@ namespace yazlabProject2 {
 	int sudokuT3[9][9];
 	int sudokuT4[9][9];
 
+	
+
 	/// <summary>
 	/// Summary for mainForm
 	/// </summary>
 	public ref class mainForm : public System::Windows::Forms::Form
 	{
 	public:
+
+		ref struct Globals {
+			static Solver ^solvert1 = gcnew Solver();
+			static Solver^ solvert2 = gcnew Solver();
+			static Solver^ solvert3 = gcnew Solver();
+			static Solver^ solvert4 = gcnew Solver();
+		};
+
 		mainForm(void)
 		{
 			InitializeComponent();
@@ -139,6 +149,7 @@ namespace yazlabProject2 {
 			// 
 			// btnCoz
 			// 
+			this->btnCoz->Enabled = false;
 			this->btnCoz->Location = System::Drawing::Point(224, 19);
 			this->btnCoz->Name = L"btnCoz";
 			this->btnCoz->Size = System::Drawing::Size(75, 23);
@@ -179,6 +190,7 @@ namespace yazlabProject2 {
 			// 
 			// btnT1
 			// 
+			this->btnT1->Enabled = false;
 			this->btnT1->Location = System::Drawing::Point(252, 19);
 			this->btnT1->Name = L"btnT1";
 			this->btnT1->Size = System::Drawing::Size(55, 49);
@@ -192,27 +204,27 @@ namespace yazlabProject2 {
 			this->labelT1Durum->AutoSize = true;
 			this->labelT1Durum->Location = System::Drawing::Point(6, 16);
 			this->labelT1Durum->Name = L"labelT1Durum";
-			this->labelT1Durum->Size = System::Drawing::Size(85, 13);
+			this->labelT1Durum->Size = System::Drawing::Size(71, 13);
 			this->labelT1Durum->TabIndex = 2;
-			this->labelT1Durum->Text = L"Durum : Çözüldü";
+			this->labelT1Durum->Text = L"Durum : Hazýr";
 			// 
 			// labelT1Step
 			// 
 			this->labelT1Step->AutoSize = true;
 			this->labelT1Step->Location = System::Drawing::Point(6, 36);
 			this->labelT1Step->Name = L"labelT1Step";
-			this->labelT1Step->Size = System::Drawing::Size(85, 13);
+			this->labelT1Step->Size = System::Drawing::Size(70, 13);
 			this->labelT1Step->TabIndex = 1;
-			this->labelT1Step->Text = L"Adým sayýsý : 539";
+			this->labelT1Step->Text = L"Adým sayýsý : -";
 			// 
 			// labelT1Time
 			// 
 			this->labelT1Time->AutoSize = true;
 			this->labelT1Time->Location = System::Drawing::Point(6, 55);
 			this->labelT1Time->Name = L"labelT1Time";
-			this->labelT1Time->Size = System::Drawing::Size(112, 13);
+			this->labelT1Time->Size = System::Drawing::Size(83, 13);
 			this->labelT1Time->TabIndex = 0;
-			this->labelT1Time->Text = L"Çözüm Süresi : 0.212s";
+			this->labelT1Time->Text = L"Çözüm Süresi : -";
 			// 
 			// groupBox3
 			// 
@@ -229,6 +241,7 @@ namespace yazlabProject2 {
 			// 
 			// btnT2
 			// 
+			this->btnT2->Enabled = false;
 			this->btnT2->Location = System::Drawing::Point(252, 19);
 			this->btnT2->Name = L"btnT2";
 			this->btnT2->Size = System::Drawing::Size(55, 49);
@@ -242,18 +255,18 @@ namespace yazlabProject2 {
 			this->labelT2Durum->AutoSize = true;
 			this->labelT2Durum->Location = System::Drawing::Point(6, 16);
 			this->labelT2Durum->Name = L"labelT2Durum";
-			this->labelT2Durum->Size = System::Drawing::Size(101, 13);
+			this->labelT2Durum->Size = System::Drawing::Size(71, 13);
 			this->labelT2Durum->TabIndex = 2;
-			this->labelT2Durum->Text = L"Durum : Çözülemedi";
+			this->labelT2Durum->Text = L"Durum : Hazýr";
 			// 
 			// labelT2Step
 			// 
 			this->labelT2Step->AutoSize = true;
 			this->labelT2Step->Location = System::Drawing::Point(6, 36);
 			this->labelT2Step->Name = L"labelT2Step";
-			this->labelT2Step->Size = System::Drawing::Size(85, 13);
+			this->labelT2Step->Size = System::Drawing::Size(70, 13);
 			this->labelT2Step->TabIndex = 1;
-			this->labelT2Step->Text = L"Adým sayýsý : 480";
+			this->labelT2Step->Text = L"Adým sayýsý : -";
 			// 
 			// labelT2Time
 			// 
@@ -279,6 +292,7 @@ namespace yazlabProject2 {
 			// 
 			// btnT3
 			// 
+			this->btnT3->Enabled = false;
 			this->btnT3->Location = System::Drawing::Point(252, 19);
 			this->btnT3->Name = L"btnT3";
 			this->btnT3->Size = System::Drawing::Size(55, 49);
@@ -292,18 +306,18 @@ namespace yazlabProject2 {
 			this->labelT3Durum->AutoSize = true;
 			this->labelT3Durum->Location = System::Drawing::Point(6, 16);
 			this->labelT3Durum->Name = L"labelT3Durum";
-			this->labelT3Durum->Size = System::Drawing::Size(101, 13);
+			this->labelT3Durum->Size = System::Drawing::Size(71, 13);
 			this->labelT3Durum->TabIndex = 2;
-			this->labelT3Durum->Text = L"Durum : Çözülemedi";
+			this->labelT3Durum->Text = L"Durum : Hazýr";
 			// 
 			// labelT3Step
 			// 
 			this->labelT3Step->AutoSize = true;
 			this->labelT3Step->Location = System::Drawing::Point(6, 36);
 			this->labelT3Step->Name = L"labelT3Step";
-			this->labelT3Step->Size = System::Drawing::Size(85, 13);
+			this->labelT3Step->Size = System::Drawing::Size(70, 13);
 			this->labelT3Step->TabIndex = 1;
-			this->labelT3Step->Text = L"Adým sayýsý : 480";
+			this->labelT3Step->Text = L"Adým sayýsý : -";
 			// 
 			// labelT3Time
 			// 
@@ -329,6 +343,7 @@ namespace yazlabProject2 {
 			// 
 			// btnT4
 			// 
+			this->btnT4->Enabled = false;
 			this->btnT4->Location = System::Drawing::Point(252, 19);
 			this->btnT4->Name = L"btnT4";
 			this->btnT4->Size = System::Drawing::Size(55, 49);
@@ -342,18 +357,18 @@ namespace yazlabProject2 {
 			this->labelT4Durum->AutoSize = true;
 			this->labelT4Durum->Location = System::Drawing::Point(6, 16);
 			this->labelT4Durum->Name = L"labelT4Durum";
-			this->labelT4Durum->Size = System::Drawing::Size(101, 13);
+			this->labelT4Durum->Size = System::Drawing::Size(71, 13);
 			this->labelT4Durum->TabIndex = 2;
-			this->labelT4Durum->Text = L"Durum : Çözülemedi";
+			this->labelT4Durum->Text = L"Durum : Hazýr";
 			// 
 			// labelT4Step
 			// 
 			this->labelT4Step->AutoSize = true;
 			this->labelT4Step->Location = System::Drawing::Point(6, 36);
 			this->labelT4Step->Name = L"labelT4Step";
-			this->labelT4Step->Size = System::Drawing::Size(85, 13);
+			this->labelT4Step->Size = System::Drawing::Size(70, 13);
 			this->labelT4Step->TabIndex = 1;
-			this->labelT4Step->Text = L"Adým sayýsý : 480";
+			this->labelT4Step->Text = L"Adým sayýsý : -";
 			// 
 			// labelT4Time
 			// 
@@ -428,6 +443,7 @@ private: System::Void btnOpen_Click(System::Object^  sender, System::EventArgs^ 
 
 				sudokuThreadsDoldur();
 				printMatris();
+				btnCoz->Enabled = true;
 
 				sr->Close();
 			}
@@ -448,38 +464,45 @@ private: System::Void sudokuThreadsDoldur() {
 }
 
 private: System::Void btnCoz_Click(System::Object^  sender, System::EventArgs^  e) {
-	if (solveT1(sudokuT1)) {
+
+	
+
+	if (Globals::solvert1->solveT1(sudokuT1)) {
 		labelT1Durum->Text = "Durum : Çözüldü";
 	}
 	else {
 		labelT1Durum->Text = "Durum : Çözülemedi";
 	}
-	labelT1Step->Text = "Adým sayýsý : " + getStepT1().ToString();
 
-	if (solveT2(sudokuT2)) {
+	labelT1Step->Text = "Adým sayýsý : " + Globals::solvert1->getStepT1().ToString();
+
+	if (Globals::solvert2->solveT2(sudokuT2)) {
 		labelT2Durum->Text = "Durum : Çözüldü";
 	}
 	else {
 		labelT2Durum->Text = "Durum : Çözülemedi";
 	}
-	labelT2Step->Text = "Adým sayýsý : " + getStepT2().ToString();
-	if (solveT3(sudokuT3)) {
+	labelT2Step->Text = "Adým sayýsý : " + Globals::solvert2->getStepT2().ToString();
+	if (Globals::solvert3->solveT3(sudokuT3)) {
 		labelT3Durum->Text = "Durum : Çözüldü";
 	}
 	else {
 		labelT3Durum->Text = "Durum : Çözülemedi";
 	}
-	labelT3Step->Text = "Adým sayýsý : " + getStepT3().ToString();
+	labelT3Step->Text = "Adým sayýsý : " + Globals::solvert3->getStepT3().ToString();
 
-	if (solveT4(sudokuT4)) {
+	if (Globals::solvert4->solveT4(sudokuT4)) {
 		labelT4Durum->Text = "Durum : Çözüldü";
 	}
 	else {
 		labelT4Durum->Text = "Durum : Çözülemedi";
 	}
-	labelT4Step->Text = "Adým sayýsý : " + getStepT4().ToString();
+	labelT4Step->Text = "Adým sayýsý : " + Globals::solvert4->getStepT4().ToString();
 
-	//printMatris();
+	btnT1->Enabled = true;
+	btnT2->Enabled = true;
+	btnT3->Enabled = true;
+	btnT4->Enabled = true;
 }
 
 private: System::Void printMatris() {
@@ -496,26 +519,26 @@ private: System::Void printMatris() {
 
 private: System::Void btnT1_Click(System::Object^  sender, System::EventArgs^  e) {
 
-	threadForm ^ t1Form = gcnew threadForm(1, 0, getStepT1());
+	threadForm ^ t1Form = gcnew threadForm(1, 0, Globals::solvert1->getStepT1());
 
 	t1Form->Show();
 
 }
 
 private: System::Void btnT2_Click(System::Object^  sender, System::EventArgs^  e) {
-	threadForm ^ t2Form = gcnew threadForm(2, 0, getStepT2());
+	threadForm ^ t2Form = gcnew threadForm(2, 0, Globals::solvert2->getStepT2());
 
 	t2Form->Show();
 }
 
 private: System::Void btnT3_Click(System::Object^  sender, System::EventArgs^  e) {
-	threadForm ^ t3Form = gcnew threadForm(3, 0, getStepT3());
+	threadForm ^ t3Form = gcnew threadForm(3, 0, Globals::solvert3->getStepT3());
 
 	t3Form->Show();
 }
 
 private: System::Void btnT4_Click(System::Object^  sender, System::EventArgs^  e) {
-	threadForm ^ t4Form = gcnew threadForm(4, 0, getStepT4());
+	threadForm ^ t4Form = gcnew threadForm(4, 0, Globals::solvert4->getStepT4());
 
 	t4Form->Show();
 }
