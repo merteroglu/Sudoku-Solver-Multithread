@@ -23,12 +23,16 @@ namespace yazlabProject2 {
 		float sure = 0;
 		int step = 0;
 		int totalStep = 0;
+		int stepHiz = 1;
 		System::IO::StreamReader ^sr;
 		ArrayList ^arrayList = gcnew ArrayList();
 
 	private: System::Windows::Forms::Label^  labelTotalStep;
 	public:
 	private: System::Windows::Forms::Label^  labelStep;
+	private: System::Windows::Forms::Label^  label2;
+	private: System::Windows::Forms::Button^  btnHizArttir;
+	private: System::Windows::Forms::Button^  btnHizAzalt;
 
 
 	private: System::Windows::Forms::Timer^  timer1;
@@ -135,11 +139,14 @@ namespace yazlabProject2 {
 			this->timer1 = (gcnew System::Windows::Forms::Timer(this->components));
 			this->labelTotalStep = (gcnew System::Windows::Forms::Label());
 			this->labelStep = (gcnew System::Windows::Forms::Label());
+			this->label2 = (gcnew System::Windows::Forms::Label());
+			this->btnHizArttir = (gcnew System::Windows::Forms::Button());
+			this->btnHizAzalt = (gcnew System::Windows::Forms::Button());
 			this->SuspendLayout();
 			// 
 			// btnBasadon
 			// 
-			this->btnBasadon->Location = System::Drawing::Point(217, 231);
+			this->btnBasadon->Location = System::Drawing::Point(217, 242);
 			this->btnBasadon->Name = L"btnBasadon";
 			this->btnBasadon->Size = System::Drawing::Size(109, 23);
 			this->btnBasadon->TabIndex = 15;
@@ -149,7 +156,7 @@ namespace yazlabProject2 {
 			// 
 			// btnBack
 			// 
-			this->btnBack->Location = System::Drawing::Point(217, 201);
+			this->btnBack->Location = System::Drawing::Point(217, 212);
 			this->btnBack->Name = L"btnBack";
 			this->btnBack->Size = System::Drawing::Size(109, 23);
 			this->btnBack->TabIndex = 14;
@@ -159,7 +166,7 @@ namespace yazlabProject2 {
 			// 
 			// btnNext
 			// 
-			this->btnNext->Location = System::Drawing::Point(217, 171);
+			this->btnNext->Location = System::Drawing::Point(217, 182);
 			this->btnNext->Name = L"btnNext";
 			this->btnNext->Size = System::Drawing::Size(109, 23);
 			this->btnNext->TabIndex = 13;
@@ -169,7 +176,7 @@ namespace yazlabProject2 {
 			// 
 			// btnDurdur
 			// 
-			this->btnDurdur->Location = System::Drawing::Point(217, 141);
+			this->btnDurdur->Location = System::Drawing::Point(217, 152);
 			this->btnDurdur->Name = L"btnDurdur";
 			this->btnDurdur->Size = System::Drawing::Size(109, 23);
 			this->btnDurdur->TabIndex = 12;
@@ -179,7 +186,7 @@ namespace yazlabProject2 {
 			// 
 			// btnBaslat
 			// 
-			this->btnBaslat->Location = System::Drawing::Point(217, 111);
+			this->btnBaslat->Location = System::Drawing::Point(217, 122);
 			this->btnBaslat->Name = L"btnBaslat";
 			this->btnBaslat->Size = System::Drawing::Size(109, 23);
 			this->btnBaslat->TabIndex = 11;
@@ -236,11 +243,43 @@ namespace yazlabProject2 {
 			this->labelStep->TabIndex = 17;
 			this->labelStep->Text = L"Þuan ki adým : 0";
 			// 
+			// label2
+			// 
+			this->label2->AutoSize = true;
+			this->label2->Location = System::Drawing::Point(217, 103);
+			this->label2->Name = L"label2";
+			this->label2->Size = System::Drawing::Size(25, 13);
+			this->label2->TabIndex = 18;
+			this->label2->Text = L"Hýz:";
+			// 
+			// btnHizArttir
+			// 
+			this->btnHizArttir->Location = System::Drawing::Point(248, 98);
+			this->btnHizArttir->Name = L"btnHizArttir";
+			this->btnHizArttir->Size = System::Drawing::Size(25, 23);
+			this->btnHizArttir->TabIndex = 19;
+			this->btnHizArttir->Text = L"+";
+			this->btnHizArttir->UseVisualStyleBackColor = true;
+			this->btnHizArttir->Click += gcnew System::EventHandler(this, &threadForm::btnHizArttir_Click);
+			// 
+			// btnHizAzalt
+			// 
+			this->btnHizAzalt->Location = System::Drawing::Point(279, 98);
+			this->btnHizAzalt->Name = L"btnHizAzalt";
+			this->btnHizAzalt->Size = System::Drawing::Size(25, 23);
+			this->btnHizAzalt->TabIndex = 20;
+			this->btnHizAzalt->Text = L"-";
+			this->btnHizAzalt->UseVisualStyleBackColor = true;
+			this->btnHizAzalt->Click += gcnew System::EventHandler(this, &threadForm::btnHizAzalt_Click);
+			// 
 			// threadForm
 			// 
 			this->AutoScaleDimensions = System::Drawing::SizeF(6, 13);
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
-			this->ClientSize = System::Drawing::Size(344, 266);
+			this->ClientSize = System::Drawing::Size(344, 285);
+			this->Controls->Add(this->btnHizAzalt);
+			this->Controls->Add(this->btnHizArttir);
+			this->Controls->Add(this->label2);
 			this->Controls->Add(this->labelStep);
 			this->Controls->Add(this->labelTotalStep);
 			this->Controls->Add(this->btnBasadon);
@@ -276,6 +315,11 @@ namespace yazlabProject2 {
 				labelStep->Text = "Þuan ki adým : " + (step+1)/9;
 			}
 
+			int temp = step + stepHiz * 9;
+			if (temp < arrayList->Count) {
+				step += stepHiz * 9;
+			}
+
 		}
 
 #pragma endregion
@@ -307,6 +351,17 @@ private: System::Void btnBaslat_Click(System::Object^  sender, System::EventArgs
 
 private: System::Void btnDurdur_Click(System::Object^  sender, System::EventArgs^  e) {
 	timer1->Enabled = false;
+}
+private: System::Void btnHizArttir_Click(System::Object^  sender, System::EventArgs^  e) {
+	if (stepHiz <= 30) {
+		stepHiz++;
+	}
+}
+
+private: System::Void btnHizAzalt_Click(System::Object^  sender, System::EventArgs^  e) {
+	if (stepHiz > 1) {
+		stepHiz--;
+	}
 }
 };
 }

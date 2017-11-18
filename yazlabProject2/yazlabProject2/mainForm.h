@@ -470,6 +470,11 @@ private: System::Void sudokuThreadsDoldur() {
 
 private: System::Void btnCoz_Click(System::Object^  sender, System::EventArgs^  e) {
 
+	labelT1Time->Text = "Çözüm süresi: -";
+	labelT2Time->Text = "Çözüm süresi: -";
+	labelT3Time->Text = "Çözüm süresi: -";
+	labelT4Time->Text = "Çözüm süresi: -";
+
 	Thread^ t1 = gcnew Thread(gcnew ThreadStart(Globals::solvert1, &Solver::solveT1));
 	Thread^ t2 = gcnew Thread(gcnew ThreadStart(Globals::solvert2, &Solver::solveT2));
 	Thread^ t3 = gcnew Thread(gcnew ThreadStart(Globals::solvert3, &Solver::solveT3));
